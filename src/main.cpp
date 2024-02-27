@@ -202,7 +202,7 @@ void OnPluginStart()
 
     db = new Database("swiftly_sounds");
 
-    DB_Result result = db->Query("CREATE TABLE IF NOT EXISTS `player_sounds` (`steamid` varchar(128) NOT NULL, `song` int(11) NOT NULL, `enable_sounds` int(11) NOT NULL, DEFAULT 0) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;");
+    DB_Result result = db->Query("CREATE TABLE IF NOT EXISTS `player_sounds` (`steamid` varchar(128) NOT NULL, `song` int(11) NOT NULL, `enable_sounds` int(11) NOT NULL DEFAULT 0) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;");
 
     if (result.size() > 0)
         db->Query("ALTER TABLE `player_sounds` ADD UNIQUE KEY `steamid` (`steamid`);");
