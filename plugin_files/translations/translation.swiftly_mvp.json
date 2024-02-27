@@ -1,18 +1,18 @@
 {
     "SoundDisabled": {
-        "en": "{lime}[Swiftly]{default} The MVP Songs are now disabled for you!"
+        "en": "{lime}[Swiftly]{default} The {lime}MVP Songs are now {lime}disabled {default}for you!"
     },
 
     "SoundEnabled": {
-        "en": "{lime}[Swiftly]{default} The MVP Songs are now enabled for you!"
+        "en": "{lime}[Swiftly]{default} The {lime}MVP Songs are now {lime}enabled {default}for you!"
     },
 
     "UsageSelectMVP": {
-        "en": "{lime}[Swiftly]{default} Usage: !setmvp <id>"
+        "en": "{lime}[Swiftly]{default} Usage: {lime}!setmvp {default}<{lime}id{default}>"
     },
 
     "MVPSelected": {
-        "en": "{lime}[Swiftly]{default} You selected %s as your MVP."
+        "en": "{lime}[Swiftly]{default} You've selected {lime}%s {default}as your {lime}MVP{default}."
     },
 
     "PlayingMVP": {
