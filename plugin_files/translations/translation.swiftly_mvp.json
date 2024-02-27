@@ -1,10 +1,10 @@
 {
     "SoundDisabled": {
-        "en": "{lime}[Swiftly]{default} The {lime}MVP Songs are now {lime}disabled {default}for you!"
+        "en": "{lime}[Swiftly]{default} The {lime}MVP Songs {default}are now {lime}disabled {default}for you!"
     },
 
     "SoundEnabled": {
-        "en": "{lime}[Swiftly]{default} The {lime}MVP Songs are now {lime}enabled {default}for you!"
+        "en": "{lime}[Swiftly]{default} The {lime}MVP Songs {default}are now {lime}enabled {default}for you!"
     },
 
     "UsageSelectMVP": {
