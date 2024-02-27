@@ -181,9 +181,11 @@ void Command_SelectMVP(int playerID, const char **args, uint32_t argsCount, bool
         return;
     }
 
+    int soundid = StringToInt(args[0]);
+
     if (soundid < 0)
-        return;
-    if (!config->Exists("swiftly_mvp.Sounds[%d]", soundid))
+        return;soundid
+    if (!config->Exists("swiftly_mvp.Sounds[%d]", ))
         return;
 
     db->Query("update `player_sounds` set song = '%d' where steamid = '%llu' limit 1", soundid, player->GetSteamID());
