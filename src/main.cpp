@@ -152,6 +152,19 @@ void Command_EnableSound(int playerID, const char **args, uint32_t argsCount, bo
 
 }
 
+void Command_Volume(int playerID, const char **args, uint32_t argsCount, bool silent)
+{
+    if (playerID == -1)
+        return;
+
+    Player *player = g_playerManager->GetPlayer(playerID);
+
+    if (player == nullptr)
+        return;
+
+    player->SetConvar("snd_toolvolume", "0.2");
+}
+
 void Command_SelectMVP(int playerID, const char **args, uint32_t argsCount, bool silent)
 {
     if (playerID == -1)
@@ -168,15 +181,20 @@ void Command_SelectMVP(int playerID, const char **args, uint32_t argsCount, bool
         return;
     }
 
+    print("%s\n", args[0]);
+
     int soundid = StringToInt(args[0]);
+    print("%d\n", soundid);
 
     if (soundid < 0)
         return;
     if (!config->Exists("swiftly_mvp.Sounds[%d]", soundid))
         return;
 
+    print("%s\n", config->Fetch<const char *>("swiftly_mvp.Sounds[%d].name", soundid));
+
     db->Query("update `player_sounds` set song = '%d' where steamid = '%llu' limit 1", soundid, player->GetSteamID());
-    player->SendMsg(HUD_PRINTTALK, FetchTranslation("swiftly_mvp.MVPSelected"),  config->Fetch<const char *>("swiftly_mvp.Sounds[%d].name", soundid));
+    player->SendMsg(HUD_PRINTTALK, FetchTranslation("swiftly.MVPSelected"), config->Fetch<const char *>("swiftly_mvp.Sounds[%d].name", soundid));
 }
 
 void OnPluginStart()
@@ -195,6 +213,8 @@ void OnPluginStart()
     commands->Register("disablemvp", reinterpret_cast<void *>(&Command_DisableSound));
     commands->Register("enablesound", reinterpret_cast<void *>(&Command_EnableSound));
     commands->Register("enablemvp", reinterpret_cast<void *>(&Command_EnableSound));
+    commands->Register("volume", reinterpret_cast<void *>(&Command_Volume));
+
     LoadMenu();
 }
 
