@@ -194,7 +194,7 @@ void Command_SelectMVP(int playerID, const char **args, uint32_t argsCount, bool
     print("%s\n", config->Fetch<const char *>("swiftly_mvp.Sounds[%d].name", soundid));
 
     db->Query("update `player_sounds` set song = '%d' where steamid = '%llu' limit 1", soundid, player->GetSteamID());
-    player->SendMsg(HUD_PRINTTALK, FetchTranslation("swiftly.MVPSelected"), config->Fetch<const char *>("swiftly_mvp.Sounds[%d].name", soundid));
+    player->SendMsg(HUD_PRINTTALK, FetchTranslation("swiftly_mvp.MVPSelected"), config->Fetch<const char *>("swiftly_mvp.Sounds[%d].name", soundid));
 }
 
 void OnPluginStart()
