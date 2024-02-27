@@ -50,6 +50,10 @@
 * Add translations for messages in chat.
 * Find a method to change the volume of the MVP.
 
+### Commands 🤖
+* !disablesound (Disables the MVP's sounds)
+* !enablesound (Enables back the MVP's sounds)
+
 ### Creating A Pull Request 😃
 
 1. Fork the Project
