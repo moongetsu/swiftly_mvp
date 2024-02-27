@@ -184,7 +184,7 @@ void Command_SelectMVP(int playerID, const char **args, uint32_t argsCount, bool
     int soundid = StringToInt(args[0]);
 
     if (soundid < 0)
-        return;soundid
+        return;
     if (!config->Exists("swiftly_mvp.Sounds[%d]", ))
         return;
 
