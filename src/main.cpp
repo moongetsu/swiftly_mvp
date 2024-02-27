@@ -172,21 +172,12 @@ void Command_SelectMVP(int playerID, const char **args, uint32_t argsCount, bool
 
     if (soundid < 0)
         return;
-
-    const char* soundName = config->Fetch<const char*>("swiftly_mvp.Sounds[%d].name");
-
-    if (soundName == nullptr)
-    {
-        return;
-    }
-
     if (!config->Exists("swiftly_mvp.Sounds[%d]", soundid))
         return;
 
     db->Query("update `player_sounds` set song = '%d' where steamid = '%llu' limit 1", soundid, player->GetSteamID());
-    player->SendMsg(HUD_PRINTTALK, FetchTranslation("swiftly_mvp.MVPSelected"), soundName);
+    player->SendMsg(HUD_PRINTTALK, FetchTranslation("swiftly_mvp.MVPSelected"),  config->Fetch<const char *>("swiftly_mvp.Sounds[%d].name", soundid));
 }
-
 
 void OnPluginStart()
 {
@@ -204,7 +195,6 @@ void OnPluginStart()
     commands->Register("disablemvp", reinterpret_cast<void *>(&Command_DisableSound));
     commands->Register("enablesound", reinterpret_cast<void *>(&Command_EnableSound));
     commands->Register("enablemvp", reinterpret_cast<void *>(&Command_EnableSound));
-
     LoadMenu();
 }
 
