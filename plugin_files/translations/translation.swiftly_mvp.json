@@ -1,0 +1,21 @@
+{
+    "SoundDisabled": {
+        "en": "{lime}[Swiftly]{default} The MVP Songs are now disabled for you!"
+    },
+
+    "SoundEnabled": {
+        "en": "{lime}[Swiftly]{default} The MVP Songs are now enabled for you!"
+    },
+
+    "UsageSelectMVP": {
+        "en": "{lime}[Swiftly]{default} Usage: !setmvp <id>"
+    },
+
+    "MVPSelected": {
+        "en": "{lime}[Swiftly]{default} You selected %s as your MVP."
+    },
+
+    "PlayingMVP": {
+        "en": "Now playing %s MVP<br/><font color='#008000'>%s</font>"
+    }
+}

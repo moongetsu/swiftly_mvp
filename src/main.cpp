@@ -97,7 +97,7 @@ void OnRoundMVP(Player *player, short reason, long value, long musickitmvps, uns
 
                 AllPlayers->ExecuteCommand("play %s", path.c_str());
             }
-            g_playerManager->SendMsg(HUD_PRINTCENTER, "Now playing %s MVP<br/><font color='#008000'>%s</font>", player->GetName(), name.c_str());
+            g_playerManager->SendMsg(HUD_PRINTCENTER, FetchTranslation("swiftly_mvp.PlayingMVP"), player->GetName(), name.c_str());
         } 
         else 
         {
@@ -132,7 +132,7 @@ void Command_DisableSound(int playerID, const char **args, uint32_t argsCount, b
         return;
 
     db->Query("update `player_sounds` set enable_sounds = '0' where steamid = '%llu' limit 1", player->GetSteamID());
-    player->SendMsg(HUD_PRINTTALK, "%d", FetchTranslation("swiftly_mvp.sound_disabled"));
+    player->SendMsg(HUD_PRINTTALK, FetchTranslation("swiftly_mvp.SoundDisabled"));
 
 }
 
@@ -148,7 +148,7 @@ void Command_EnableSound(int playerID, const char **args, uint32_t argsCount, bo
         return;
 
     db->Query("update `player_sounds` set enable_sounds = '1' where steamid = '%llu' limit 1", player->GetSteamID());
-    player->SendMsg(HUD_PRINTTALK, "%d", FetchTranslation("swiftly_mvp.sound_enabled"));
+    player->SendMsg(HUD_PRINTTALK, FetchTranslation("swiftly_mvp.SoundEnabled"));
 
 }
 
@@ -177,25 +177,17 @@ void Command_SelectMVP(int playerID, const char **args, uint32_t argsCount, bool
 
     if (argsCount < 1)
     {
-        player->SendMsg(HUD_PRINTTALK, "Usage: !setmvp <id>");
+        player->SendMsg(HUD_PRINTTALK, FetchTranslation("swiftly_mvp.UsageSelectMVP"));
         return;
     }
-
-    print("%s\n", args[0]);
-
-    int soundid = StringToInt(args[0]);
-    print("%d\n", soundid);
 
     if (soundid < 0)
         return;
     if (!config->Exists("swiftly_mvp.Sounds[%d]", soundid))
         return;
 
-    print("%s\n", config->Fetch<const char *>("swiftly_mvp.Sounds[%d].name", soundid));
-
     db->Query("update `player_sounds` set song = '%d' where steamid = '%llu' limit 1", soundid, player->GetSteamID());
-    print("Player %s has selected %s as their MVP sound.", player->GetName(), config->Fetch<const char *>("swiftly_mvp.Sounds[%d].name", soundid));
-    player->SendMsg(HUD_PRINTTALK, "%d", FetchTranslation("swiftly.mvp_selected"),  config->Fetch<const char *>("swiftly_mvp.Sounds[%d].name", soundid));
+    player->SendMsg(HUD_PRINTTALK, "%s", FetchTranslation("swiftly.MVPSelected"),  config->Fetch<const char *>("swiftly_mvp.Sounds[%d].name", soundid));
 }
 
 void OnPluginStart()
